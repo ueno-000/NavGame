@@ -5,7 +5,7 @@ using UnityEngine.AI;   // Navmesh Agent を使うために必要
 /// Navmesh Agent を使って経路探索を行い、移動するためのコンポーネント
 /// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
-public class PlayerControllerAi : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     /// <summary>移動先となる位置情報</summary>
     [SerializeField] Transform _target = default;
