@@ -21,8 +21,7 @@ public class Camerawheel : MonoBehaviour
     // 距離が切り替わるまでのおおよその時間
     [SerializeField] private float _smoothTime = 1;
 
-    private CinemachineTransposer _transposer;
-    private Vector3 _direction;
+    private CinemachineFramingTransposer _framingTransposer;
 
     private float _currentDistance;
     private float _targetDistance;
@@ -32,26 +31,24 @@ public class Camerawheel : MonoBehaviour
     private void Awake()
     {
         // Transposerコンポーネントを取得
-        _transposer = _virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-        if (_transposer == null)
+        _framingTransposer = _virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        if (_framingTransposer == null)
             return;
 
-        // オフセットの方向保持
-        // （この方向に沿ってオフセットを移動させる）
-        var offset = _transposer.m_FollowOffset;
-        _direction = offset.normalized;
-        _currentDistance = _targetDistance = offset.magnitude;
+        double _distance = _framingTransposer.m_CameraDistance;
+
     }
 
     // カメラワーク更新
     private void Update()
     {
-        if (_transposer == null)
+        if (_framingTransposer == null)
             return;
 
         // マウスホイールの移動量取得
         var scrollDelta = Input.mouseScrollDelta.y;
-        if (!Mathf.Approximately(scrollDelta, 0))
+ 
+        if (!Mathf.Approximately(scrollDelta, 3))
         {
             _targetDistance = Mathf.Clamp(
                 _targetDistance - _sensitivity * scrollDelta,
@@ -69,6 +66,6 @@ public class Camerawheel : MonoBehaviour
         );
 
         // 向きと距離をもとに、次のオフセット計算・反映
-        _transposer.m_FollowOffset = _direction * _currentDistance;
+        _framingTransposer.m_CameraDistance = _targetDistance * _currentDistance / 10;
     }
 }
