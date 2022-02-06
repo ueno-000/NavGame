@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     /// <summary>移動先となる位置情報</summary>
     [SerializeField] Transform _target = default;
+    [SerializeField] int _Hp = 20;
     /// <summary>移動先座標を保存する変数</summary>
     Vector3 _cachedTargetPosition;
     /// <summary>キャラクターなどのアニメーションするオブジェクトを指定する</summary>
@@ -39,6 +40,14 @@ public class PlayerController : MonoBehaviour
         if (_animator)
         {
             _animator.SetFloat("Speed", _agent.velocity.magnitude);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("ダメージを受けた");
         }
     }
 }

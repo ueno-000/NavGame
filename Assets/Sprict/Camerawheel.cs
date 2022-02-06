@@ -6,19 +6,19 @@ using UnityEngine;
 /// </summary>
 public class Camerawheel : MonoBehaviour
 {
-    // バーチャルカメラ
+    //カメラ
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
-    // マウスホイールの操作感度
+    //ホイール感度
     [SerializeField] private float _sensitivity = 1;
 
-    // 対象物との最小距離
+    // 対象との最大値
+    [SerializeField] private float _maxDistance = 20;
+    // 対象との最小値
     [SerializeField] private float _minDistance = 1;
 
-    // 対象物との最大距離
-    [SerializeField] private float _maxDistance = 20;
 
-    // 距離が切り替わるまでのおおよその時間
+    // 距離の切り替え時間
     [SerializeField] private float _smoothTime = 1;
 
     private CinemachineFramingTransposer _framingTransposer;
@@ -27,6 +27,7 @@ public class Camerawheel : MonoBehaviour
     private float _targetDistance;
     private float _currentVelocity;
 
+
     // 初期化
     private void Awake()
     {
@@ -34,24 +35,20 @@ public class Camerawheel : MonoBehaviour
         _framingTransposer = _virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         if (_framingTransposer == null)
             return;
-
-        double _distance = _framingTransposer.m_CameraDistance;
-
     }
 
     // カメラワーク更新
     private void Update()
-    {
+    {    // マウスホイールの移動取得
+        float _scrollDelta = Input.mouseScrollDelta.y;
+
         if (_framingTransposer == null)
             return;
-
-        // マウスホイールの移動量取得
-        var scrollDelta = Input.mouseScrollDelta.y;
  
-        if (!Mathf.Approximately(scrollDelta, 3))
+        if (!Mathf.Approximately(_scrollDelta, 3))
         {
             _targetDistance = Mathf.Clamp(
-                _targetDistance - _sensitivity * scrollDelta,
+                _targetDistance - _sensitivity * _scrollDelta,
                 _minDistance,
                 _maxDistance
             );
