@@ -291,8 +291,7 @@ AnimatorState:
   m_Name: Macarena Dance
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 6513074654584590872}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -402,7 +401,6 @@ AnimatorState:
   m_Transitions:
   - {fileID: 3177512656304964619}
   - {fileID: -1505195598243117262}
-  - {fileID: -9045249236325138300}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
