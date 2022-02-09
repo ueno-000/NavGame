@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator _animator = default;
     NavMeshAgent _agent = default;
 
+
+    
+
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
