@@ -56,7 +56,7 @@ public class EnemyAttack : MonoBehaviour
         // トリガーに入った GameObject が Rigidbody を持っていたら Animator Controller のパラメータを操作する
         if (other.gameObject.GetComponent<Rigidbody>())
         {
-            _anim.SetTrigger("AttackTrigger");
+            _anim.SetTrigger("Attack");
         }
     }
 

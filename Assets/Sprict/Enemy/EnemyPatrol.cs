@@ -7,11 +7,15 @@ using UnityEngine.AI;
 public class EnemyPatrol : MonoBehaviour
 {
     // 巡回地点オブジェクトを格納する配列
+    [Tooltip("巡回Pointを指定する")]
     public Transform[] _points;
     // 巡回地点のオブジェクト数（初期値=0）
     private int _destPoint = 0;
+
     // NavMesh Agent コンポーネントを格納する変数
-    private NavMeshAgent _agent;
+    [HideInInspector]
+    public NavMeshAgent _agent;
+
 
     // ゲームスタート時の処理
     void Start()
