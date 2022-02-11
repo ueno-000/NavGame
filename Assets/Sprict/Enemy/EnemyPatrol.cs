@@ -49,13 +49,13 @@ public class EnemyPatrol : MonoBehaviour
         _destPoint = (_destPoint + 1) % _points.Length;
     }
 
-    public void Explode(Vector3 center, float damage)
-    {
-        Debug.Log("爆発によるダメージを受けた");
-        //// 体力を増減してゲージに反映
-        //HP += -damage;
-        //HP = Mathf.Clamp(HP, 0f, 1f);
-        //HpImage.fillAmount = HP;
+    //public void Explode(Vector3 center, float damage)
+    //{
+    //    Debug.Log("爆発によるダメージを受けた");
+    //    //// 体力を増減してゲージに反映
+    //    //HP += -damage;
+    //    //HP = Mathf.Clamp(HP, 0f, 1f);
+    //    //HpImage.fillAmount = HP;
 
-    }
+    //}
 }

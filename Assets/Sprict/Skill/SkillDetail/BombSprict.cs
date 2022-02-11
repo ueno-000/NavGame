@@ -18,32 +18,32 @@ public class BombSprict : MonoBehaviour
         // 5秒後に自分を削除
         Destroy(this.gameObject,4f);
     }
-    IEnumerator  Explode()
-    {
-        GameObject[] _enemys = GameObject.FindGameObjectsWithTag("Enemy"); // 敵を探す
+    //IEnumerator  Explode()
+    //{
+    //    GameObject[] _enemys = GameObject.FindGameObjectsWithTag("Enemy"); // 敵を探す
 
-        Vector3 center = transform.position; // グレネードの位置
+    //    Vector3 center = transform.position; // グレネードの位置
 
-        // 敵がいれば
-        if (_enemys.Length != 0)
-        {
-            yield return new WaitForSeconds(3.5f);
+    //    // 敵がいれば
+    //    if (_enemys.Length != 0)
+    //    {
+    //        yield return new WaitForSeconds(3.5f);
 
-            foreach (GameObject e in _enemys)
-            {
-                EnemyPatrol _enemy = e.GetComponent<EnemyPatrol>();
+    //        foreach (GameObject e in _enemys)
+    //        {
+    //            EnemyPatrol _enemy = e.GetComponent<EnemyPatrol>();
 
-                if (_enemy)
-                {
-                    // 敵との距離
-                    float _distance = Vector3.Distance(e.transform.position, center);
-                    if (_distance <= _enemyDistance)
-                    {
-                        _enemy.Explode(center, 1f - _distance * 0.05f);
+    //            if (_enemy)
+    //            {
+    //                // 敵との距離
+    //                float _distance = Vector3.Distance(e.transform.position, center);
+    //                if (_distance <= _enemyDistance)
+    //                {
+    //                    _enemy.Explode(center, 1f - _distance * 0.05f);
 
-                    }
-                }
-            }
-        }
-    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 }

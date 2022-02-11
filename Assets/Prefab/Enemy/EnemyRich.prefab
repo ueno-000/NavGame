@@ -602,7 +602,6 @@ GameObject:
   - component: {fileID: 6052107700972958925}
   - component: {fileID: 1107639151}
   - component: {fileID: 1731610391}
-  - component: {fileID: 8181080729503774235}
   - component: {fileID: 1031977221596468200}
   m_Layer: 2
   m_Name: EnemyRich
@@ -657,7 +656,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &1107639151
 NavMeshAgent:
@@ -697,22 +696,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8181080729503774235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6931458598396433524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c23d7a36fb7ee49bdcebd55b9b3ecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _points:
-  - {fileID: 0}
-  - {fileID: 0}
-  _agent: {fileID: 0}
 --- !u!114 &1031977221596468200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,8 +708,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6cd2e9fe07a6b46abdbc68a927baec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackCol: {fileID: 0}
-  _attackRange: 0
+  _points:
+  - {fileID: 0}
+  - {fileID: 0}
+  _agent: {fileID: 0}
+  _attackRange: 10
+  action: 0
 --- !u!1 &6946296762080210432
 GameObject:
   m_ObjectHideFlags: 0
