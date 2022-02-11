@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 5029358818240590665}
   - component: {fileID: 915346622213864728}
   m_Layer: 0
-  m_Name: FreeLichPolyart
+  m_Name: SupRich
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -767,7 +767,7 @@ Animator:
   m_GameObject: {fileID: 7784814277306191215}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6e771cc839352964bbeed6d2f491914f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 0a15c11dbbde189499421a0ca9e248fa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0ad854b3c2d0b0a45b11d97926f51bae, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
