@@ -6,6 +6,7 @@
 /// </summary>
 public class MarkerController : MonoBehaviour
 {
+   // [SerializeField] Camera _mapCamera;
     /// <summary>Ray が何にも当たらなかった時、Scene に表示する Ray の長さ</summary>
     [SerializeField] float _debugRayLength = 100f;
     /// <summary>Ray が何かに当たった時に Scene に表示する Ray の色</summary>

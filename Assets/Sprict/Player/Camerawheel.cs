@@ -64,7 +64,7 @@ public class Camerawheel : MonoBehaviour
         if (_framingTransposer == null)
             return;
 
-        Debug.Log(_framingTransposer.m_CameraDistance);
+        //Debug.Log(_framingTransposer.m_CameraDistance);
 
         //スクロールの値が３と近似していない場合
         if (!Mathf.Approximately(_scrollDelta, 3))
