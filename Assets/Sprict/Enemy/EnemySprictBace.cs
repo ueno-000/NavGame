@@ -43,7 +43,7 @@ public class EnemySprictBace : MonoBehaviour
     [Tooltip("Caractorを追う時間")]
     [SerializeField] float _time;
     [Tooltip("Caractorを攻撃する時間")]
-    [SerializeField] float _timeAttack = 0;
+    [SerializeField] float _timeAttack;
 
 
     enum Action
@@ -100,6 +100,7 @@ public class EnemySprictBace : MonoBehaviour
             _anim.SetFloat("Speed", _agent.velocity.magnitude);
         }
 
+
         //＝＝＝＝以下列挙型の処理＝＝＝＝
 
 
@@ -107,10 +108,18 @@ public class EnemySprictBace : MonoBehaviour
         //＝＝＝＝actionがpatrolの場合
         if (action == Action.Patrol)
         {
+            _agent.isStopped = false;
             // エージェントが現在の巡回地点に到達したら
-            if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
+            if (!_agent.pathPending && _agent.remainingDistance < 0.5)
+            {
+                Debug.Log("到達：次の巡回地点を設定");
                 // 次の巡回地点を設定する処理を実行
                 GotoNextPoint();
+            }
+            else
+            {
+                Debug.Log("未到達");
+            }
         }
         //＝＝＝＝chaseの場合
         else if (action == Action.Chase)
@@ -132,34 +141,34 @@ public class EnemySprictBace : MonoBehaviour
             _agent.speed = 0f;
             _agent.isStopped = true;
             transform.Rotate(new Vector3(0, 90, 0) * Time.deltaTime * 10, Space.World);
-
-            //1秒立ったらChaseに戻る
-            _timeAttack += Time.deltaTime;
-
-            if (_timeAttack > 1)
-            {
-                action = Action.Chase;
-                _timeAttack = 0;
-                _agent.isStopped = false;
-            }
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider col)
     {
         //Patrolの時にPlayerタグのオブジェクトに当たったらChaseに
-        if (collision.gameObject.tag == "Player" && action == Action.Patrol)
+        if (col.gameObject.tag == "Player" && action == Action.Patrol)
         {
             action = Action.Chase;
         }
 
-        //Patrolの時にPlayerタグのオブジェクトに当たったらAttackに
-        if (collision.gameObject.tag == "Player" && action == Action.Chase)
+        //Chaseの時にPlayerタグのオブジェクトに当たったらAttackに
+        if (col.gameObject.tag == "Player" && action == Action.Chase)
         {
             action = Action.Attack;
         }
-        
     }
 
-
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.tag == "Player" && action == Action.Attack)
+        {
+            action = Action.Patrol;
+            _agent.speed = 1f;
+            _agent.isStopped = false;
+            Debug.Log("到達：次の巡回地点を設定");
+            // 次の巡回地点を設定する処理を実行
+            GotoNextPoint();
+        }
+    }
 
 }
