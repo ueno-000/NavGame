@@ -7,7 +7,7 @@ public class EnemySprictBace : MonoBehaviour
 {
     // 巡回地点オブジェクトを格納する配列
     [Header("巡回Pointを指定する")]
-    public Transform[] _points;
+    public Vector3[] _points;
     // 巡回地点のオブジェクト数（初期値=0）
     private int _destPoint = 0;
 
@@ -83,7 +83,7 @@ public class EnemySprictBace : MonoBehaviour
             return;
         }
         // 現在選択されている配列の座標を巡回地点の座標に代入
-        _agent.destination = _points[_destPoint].position;
+        _agent.destination = _points[_destPoint];
         // 配列内の次の位置を目標地点に設定し、 必要ならば出発地点にもどる
         _destPoint = (_destPoint + 1) % _points.Length;
     }
@@ -116,10 +116,7 @@ public class EnemySprictBace : MonoBehaviour
                 // 次の巡回地点を設定する処理を実行
                 GotoNextPoint();
             }
-            else
-            {
-                Debug.Log("未到達");
-            }
+
         }
         //＝＝＝＝chaseの場合
         else if (action == Action.Chase)

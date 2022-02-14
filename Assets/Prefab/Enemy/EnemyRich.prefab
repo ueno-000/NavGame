@@ -709,8 +709,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {x: 20, y: 0, z: 25}
+  - {x: 5, y: 0, z: 25}
+  - {x: 15, y: 0, z: 15}
   _agent: {fileID: 0}
   _attackRange: 10
   _hp: 0
