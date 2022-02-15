@@ -8,7 +8,8 @@ public class EnemyGenerationSprict : MonoBehaviour
     [SerializeField] GameObject _enemyPrefab;
 
     //生成ポジションの指定
-    [SerializeField] Transform _position;
+    [Header("生成ポジションの配列")]
+    [SerializeField] Transform[]  _position;
 
     //生成間隔の時間指定
     [SerializeField] float _time = 5f;
@@ -25,8 +26,10 @@ public class EnemyGenerationSprict : MonoBehaviour
 
         if (_time > _setTime)
         {
-            Instantiate(_enemyPrefab, _position);
-
+            for (int i = 0; i < _position.Length; i++) 
+            {
+                Instantiate(_enemyPrefab, _position[i]);
+            }
             _time = 0;
         }
     }
