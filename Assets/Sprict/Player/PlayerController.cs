@@ -7,13 +7,27 @@ using UnityEngine.AI;   // Navmesh Agent を使うために必要
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerController : MonoBehaviour
 {
+    /// <summary>
+    /// デバッグモードTrueにすると攻撃を受けない
+    /// </summary>
+    [Header("【デバッグ用】：✔をつけると攻撃を受けない"),SerializeField] bool _debugMode = false;
+
+    [Header("ReSpawn位置：ReSpawnPrefab→Area→［Spawn］をアタッチ"), SerializeField] Transform _reSpawnArea;
     /// <summary>移動先となる位置情報</summary>
-    [SerializeField] Transform _target = default;
-    [SerializeField] int _Hp = 20;
+    [Space(5),SerializeField] Transform _target = default;
     /// <summary>移動先座標を保存する変数</summary>
     Vector3 _cachedTargetPosition;
+
+    /// <summary>HitPoint</summary>
+    [SerializeField] int _hp = 20;
+    /// <summary>MagicPoint</summary>
+    [SerializeField] int _mp = 20;
+
+
     /// <summary>キャラクターなどのアニメーションするオブジェクトを指定する</summary>
-    [SerializeField] Animator _animator = default;
+    [SerializeField] Animator _anim = default;
+
+    /// <summary> NavMesh Agent コンポーネントを格納する変数</summary>
     NavMeshAgent _agent = default;
 
 
@@ -23,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _cachedTargetPosition = _target.position; // 初期位置を保存する（※）
+        this.transform.position = _reSpawnArea.position;
     }
 
     /*
@@ -32,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // m_target が移動したら Navmesh Agent を使って移動させる
+        // _target が移動したら Navmesh Agent を使って移動させる
         if (Vector3.Distance(_cachedTargetPosition, _target.position) > Mathf.Epsilon) // _target が移動したら
         {
             _cachedTargetPosition = _target.position; // 移動先の座標を保存する
@@ -40,9 +55,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // m_animator がアサインされていたら Animator Controller にパラメーターを設定する
-        if (_animator)
+        if (_anim)
         {
-            _animator.SetFloat("Speed", _agent.velocity.magnitude);
+            _anim.SetFloat("Speed", _agent.velocity.magnitude);
         }
     }
 
@@ -51,6 +66,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("ダメージを受けた");
+            _anim.SetTrigger("Damage");
         }
     }
 }
