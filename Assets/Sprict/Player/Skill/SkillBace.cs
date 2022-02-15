@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class SkillBace : MonoBehaviour
 {
-    public GameObject _setumeiImage;
+    [SerializeField] public GameObject _setumeiImage;
+    [Header("消費MP"), SerializeField] int _mpUsageCost = 5;
 
     // マウスカーソルが対象オブジェクトに重なっている間コールされ続ける
     public virtual void  OnMouseOver()

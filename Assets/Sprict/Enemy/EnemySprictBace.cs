@@ -112,7 +112,6 @@ public class EnemySprictBace : MonoBehaviour
             // エージェントが現在の巡回地点に到達したら
             if (!_agent.pathPending && _agent.remainingDistance < 0.5)
             {
-                Debug.Log("到達：次の巡回地点を設定");
                 // 次の巡回地点を設定する処理を実行
                 GotoNextPoint();
             }
