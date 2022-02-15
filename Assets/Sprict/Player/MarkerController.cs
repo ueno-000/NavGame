@@ -15,12 +15,19 @@ public class MarkerController : MonoBehaviour
     [SerializeField] GameObject _marker;
     /// <summary>飛ばした Ray が当たった座標に m_marker を移動する際、Ray が当たった座標からどれくらいずらした場所に移動するかを設定する</summary>
     [SerializeField] Vector3 _markerOffset = Vector3.up * 0.01f;
+    /// <summary>クリック時のAnimation</summary>
+    Animator _anim;
 
+    private void Start()
+    {
+        _anim = GetComponent<Animator>();
+    }
     void Update()
     {
         // クリックで Ray を飛ばす
         if (Input.GetButtonDown("Fire2"))
         {
+            
             // カメラの位置 → マウスでクリックした場所に Ray を飛ばすように設定する
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -33,6 +40,7 @@ public class MarkerController : MonoBehaviour
                 if (_marker)
                 {
                     _marker.transform.position = hit.point + _markerOffset;
+                    _anim.SetTrigger("ClickTrigger");
                 }
             }
             else
