@@ -5,7 +5,7 @@ using HC.Debug;
 /// Skill1 Playerから360度範囲に波動が出る
 /// </summary>
 
-public class PlayerSkill_1 : SkillBace
+public class PlayerSkill_1 : OnMouseBace
 {
     /// <summary>
     /// 攻撃範囲
@@ -41,14 +41,14 @@ public class PlayerSkill_1 : SkillBace
     public override void OnMouseOver()
     {
         _hitArea.AddComponent<ColliderVisualizer>().Initialize(_visualizerColor, _message, _fontSize);
-        _setumeiImage.SetActive(true);
+        _image[1].SetActive(true);
         _hitArea.SetActive(true);
     }
     // マウスカーソルが対象オブジェクトから退出した時にコールされる
     public override void OnMouseExit()
     {
         Destroy(_hitArea.GetComponent<ColliderVisualizer>());
-        _setumeiImage.SetActive(false);
+        _image[1].SetActive(false);
         _hitArea.SetActive(false);
     }
 

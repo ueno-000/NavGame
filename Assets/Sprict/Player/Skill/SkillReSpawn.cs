@@ -3,7 +3,7 @@
 /// <summary>
 /// リスポーンの処理
 /// </summary>
-public class SkillReSpawn : SkillBace
+public class SkillReSpawn : OnMouseBace
 {
     /// <summary>
     /// Respawnボタンが押されたかの判定

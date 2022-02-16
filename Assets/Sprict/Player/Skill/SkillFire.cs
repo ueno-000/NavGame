@@ -3,7 +3,7 @@
 /// <summary>
 /// スキル2
 /// </summary>
-public class SkillFire :SkillBace
+public class SkillFire :OnMouseBace
 {
     /// <summary>火玉プレハブ</summary>
     [SerializeField] GameObject _fireBall;
@@ -18,13 +18,13 @@ public class SkillFire :SkillBace
     public override void OnMouseOver()
     {
         Debug.Log("MouseOver!");
-        _setumeiImage.SetActive(true);
+        _image[1].SetActive(true);
     }
     // マウスカーソルが対象オブジェクトから退出した時にコールされる
     public override void OnMouseExit()
     {
         Debug.Log("MouseExit!");
-        _setumeiImage.SetActive(false);
+        _image[1].SetActive(false);
     }
 
     public void Skill2() => Instantiate(_fireBall,_hand.position ,Quaternion.identity);
