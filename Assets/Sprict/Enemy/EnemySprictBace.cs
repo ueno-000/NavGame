@@ -27,8 +27,8 @@ public class EnemySprictBace : MonoBehaviour
     [SerializeField,Range(1.0f, 10.0f)] float _attackRange;
 
     [Space(10)]
-
-    [SerializeField] int _hp;
+    [SerializeField] public int _hp = 10;
+    [SerializeField] int _maxHp = 10;
 
     //animation
     Animator _anim = default;
@@ -45,12 +45,23 @@ public class EnemySprictBace : MonoBehaviour
     [Tooltip("Caractorを攻撃する時間")]
     [SerializeField] float _timeAttack;
 
-
     enum Action
     {
         Patrol,//決められた地点を巡回する
         Chase,//対象のキャラクターを追いかける
         Attack//攻撃
+    }
+
+    public int Hp
+    {
+        set
+        {
+            _hp = Mathf.Clamp(value, 0, _maxHp);
+        }
+        get
+        {
+            return _hp;
+        }
     }
 
 
@@ -136,7 +147,7 @@ public class EnemySprictBace : MonoBehaviour
         {
             _agent.speed = 0f;
             _agent.isStopped = true;
-            transform.Rotate(new Vector3(0, 90, 0) * Time.deltaTime * 10, Space.World);
+            LichEnemyAttack();
         }
     }
     private void OnTriggerEnter(Collider col)
@@ -167,4 +178,15 @@ public class EnemySprictBace : MonoBehaviour
         }
     }
 
+    void LichEnemyAttack()
+    {
+        _anim.SetTrigger("Attack");
+
+    }
+
+    void Damage()
+    {
+        _anim.SetTrigger("Attack");
+        _hp--;
+    }
 }

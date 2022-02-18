@@ -28,6 +28,7 @@ public class MarkerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             _anim.SetTrigger("ClickTrigger");
+
             // カメラの位置 → マウスでクリックした場所に Ray を飛ばすように設定する
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

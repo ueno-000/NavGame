@@ -30,6 +30,7 @@ public class PlayerSkill_1 : OnMouseBace
 
     private void Start()
     {
+        _hitArea.SetActive(false);
         _hitAreaCol = _hitArea.GetComponent<SphereCollider>();
         //_hitArea.AddComponent<ColliderVisualizer>().Initialize(_visualizerColor, _message, _fontSize);
     }
@@ -41,17 +42,19 @@ public class PlayerSkill_1 : OnMouseBace
     public override void OnMouseOver()
     {
         _hitArea.AddComponent<ColliderVisualizer>().Initialize(_visualizerColor, _message, _fontSize);
-        _image[1].SetActive(true);
+        _image[0].SetActive(true);
         _hitArea.SetActive(true);
     }
     // マウスカーソルが対象オブジェクトから退出した時にコールされる
     public override void OnMouseExit()
     {
         Destroy(_hitArea.GetComponent<ColliderVisualizer>());
-        _image[1].SetActive(false);
-        _hitArea.SetActive(false);
+        _image[0].SetActive(false);
     }
 
-    public void OnSkill1() => Instantiate(_skillEffect,_position.position,Quaternion.identity);
-
+    public void OnSkill1()
+    {
+        Instantiate(_skillEffect, _position.position, Quaternion.identity);
+        _hitArea.SetActive(false);
+    }
 }

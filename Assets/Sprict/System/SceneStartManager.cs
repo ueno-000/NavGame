@@ -1,18 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SceneStartManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] Scenemanager _sceneManager;
+    [Header("FadePanelをアクティブにしてアタッチ"),SerializeField] Image _image;
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _image.color = Color.black;
+        _sceneManager.Fade(true, null);
     }
 }
