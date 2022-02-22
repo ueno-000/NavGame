@@ -30,6 +30,6 @@ public class FirstTask : TutorialInterface
 
     public float _transitionTime()
     {
-        return 3f;
+        return 1f;
     }
 }

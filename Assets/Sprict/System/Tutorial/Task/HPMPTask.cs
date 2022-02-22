@@ -19,7 +19,7 @@ public class HPMPTask : TutorialInterface
 
     public bool _isCheckTask()
     {
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButton("Fire1"))
         {
             return true;
         }
