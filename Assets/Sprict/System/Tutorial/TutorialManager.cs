@@ -45,6 +45,7 @@ public class TutorialManager : MonoBehaviour
             new ReSpawnTask(),
             new Skill1Task(),
             new Skill2Task(),
+            new HPMPTask(),
         };
 
         // 最初のチュートリアルを設定
