@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;//忘れずに追加
 
 public class GameManager : MonoBehaviour
 {
@@ -21,9 +22,9 @@ public class GameManager : MonoBehaviour
     int _playerDeathCount = 0;
     /// <summary></summary>
 
-
     void Update()
     {
-        
+
     }
+
 }

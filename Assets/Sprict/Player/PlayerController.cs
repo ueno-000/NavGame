@@ -19,14 +19,15 @@ public class PlayerController : MonoBehaviour
     /// <summary>移動先座標を保存する変数</summary>
     Vector3 _cachedTargetPosition;
 
+    /// <summary>キャラクターなどのアニメーションするオブジェクトを指定する</summary>
+    [SerializeField] Animator _anim = default;
+
+    [Header("各種変動値")]
     /// <summary>HitPoint</summary>
     [SerializeField] int _hp = 20;
     /// <summary>MagicPoint</summary>
     [SerializeField] int _mp = 20;
 
-
-    /// <summary>キャラクターなどのアニメーションするオブジェクトを指定する</summary>
-    [SerializeField] Animator _anim = default;
 
     /// <summary> NavMesh Agent コンポーネントを格納する変数</summary>
     NavMeshAgent _agent = default;
