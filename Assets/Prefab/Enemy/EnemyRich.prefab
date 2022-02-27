@@ -1107,14 +1107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6cd2e9fe07a6b46abdbc68a927baec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points:
-  - {x: 8, y: 0, z: -10}
-  - {x: 15, y: 0, z: 15}
-  - {x: 25, y: 0, z: 5}
-  - {x: 5, y: 0, z: 25}
+  _points: []
   _agent: {fileID: 0}
   _attackRange: 10
   _hp: 0
+  _maxHp: 10
   action: 0
   _time: 5
   _timeAttack: 5
