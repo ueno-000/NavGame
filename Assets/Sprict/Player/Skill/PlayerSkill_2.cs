@@ -60,6 +60,13 @@ public class PlayerSkill_2 : OnMouseBace
                     _hitArea.transform.position = hit.point;
                 }
             }
+            //右クリックされた時スキルをキャンセルする
+            if (Input.GetButtonDown("Fire2"))
+            {
+                Destroy(_hitArea.GetComponent<ColliderVisualizer>());
+                _isSkill2ButtonPushed = false;
+            }
+            //左クリックでエフェクトとダメージ判定をする
             if (Input.GetButtonDown("Fire1"))
             {
                 Instantiate(_skillEffect, _hitArea.transform.position, Quaternion.identity);
