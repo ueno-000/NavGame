@@ -6,13 +6,13 @@ public class TextHPSprict :HPController
 
     //void Start()
     //{
-    //    hpSlider = GetComponent<Slider>();
+    //    hpSlider = this.GetComponent<Slider>();
     //    //スライダーの最大値の設定
-    //    hpSlider.maxValue = maxHp;
+    //    hpSlider.maxValue = _maxHp;
     //}
 
     /// <summary>Hpをスライダーに表示させるメソッド</summary>
-    public void UpdateSlider(int hp)
+    public override void UpdateSlider(int hp)
     {
         hpSlider.value = hp;
         _hpText.text = hp.ToString();

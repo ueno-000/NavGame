@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class HPController : MonoBehaviour
 {
     /// <summary> Playerの体力 </summary>
-    [SerializeField] public float _maxHp = 5f;
+    [SerializeField] public int _maxHp = 5;
+
     [HideInInspector] public Slider hpSlider;
     
     void Start()
@@ -16,7 +17,7 @@ public class HPController : MonoBehaviour
     }
 
     /// <summary>Hpをスライダーに表示させるメソッド</summary>
-    public void UpdateSlider(int hp)
+    public virtual void UpdateSlider(int hp)
     {
         hpSlider.value = hp;
     }
