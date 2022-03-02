@@ -27,8 +27,8 @@ public class EnemySprictBace : MonoBehaviour
     [SerializeField,Range(1.0f, 10.0f)] float _attackRange;
 
     [Space(10)]
-    [SerializeField] public int _hp = 10;
-    [SerializeField] int _maxHp = 10;
+    [SerializeField] public int _hp = 50;
+    [SerializeField] int _maxHp = 50;
 
     //animation
     Animator _anim = default;
@@ -184,9 +184,9 @@ public class EnemySprictBace : MonoBehaviour
 
     }
 
-    void Damage()
+    public void ReceiveDamage(int damage)
     {
-        _anim.SetTrigger("Attack");
-        _hp--;
+        Debug.Log("リッチは " + damage + "ダメージ食らった");
+        _hp -= damage;
     }
 }

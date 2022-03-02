@@ -88,12 +88,5 @@ public class PlayerController : MonoBehaviour
     }
  
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            Debug.Log("ダメージを受けた");
-            _anim.SetTrigger("Damage");
-        }
-    }
+
 }

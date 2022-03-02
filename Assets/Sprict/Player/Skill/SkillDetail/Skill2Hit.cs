@@ -4,6 +4,10 @@
 /// </summary>
 public class Skill2Hit : MonoBehaviour
 {
+    private void Start()
+    {
+        Destroy(this, 2f);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +19,5 @@ public class Skill2Hit : MonoBehaviour
         {
             hit.ReceiveDamage(10);
         }
-        //hit.ReceiveDamage(10);
     }
 }

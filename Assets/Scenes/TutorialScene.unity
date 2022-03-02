@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 138948181}
   - component: {fileID: 138948180}
   m_Layer: 2
-  m_Name: Slider
+  m_Name: HpSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e243d0c462b128644a2a570673f46aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 5
+  _maxHp: 50
   hpSlider: {fileID: 138948181}
   _hpText: {fileID: 1954390328}
 --- !u!114 &138948181
@@ -510,9 +510,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 60
+  m_MaxValue: 50
   m_WholeNumbers: 0
-  m_Value: 60
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4010,7 +4010,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 2.5
+  m_CameraDistance: 6.4
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -4692,7 +4692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443196378}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: 2.9151115, z: -1.6069691}
+  m_LocalPosition: {x: 0, y: 5.9026856, z: -4.1138406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 232032634}
@@ -5132,12 +5132,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 478098104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e243d0c462b128644a2a570673f46aa1, type: 3}
+  m_Script: {fileID: 11500000, guid: e8ba2993dc58cd54498caf1ee2884119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 5
-  hpSlider: {fileID: 138948181}
-  _hpText: {fileID: 1954390328}
+  _hp: 50
+  helth: {fileID: 138948180}
 --- !u!65 &478098107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9658,7 +9657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673259716}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: 2.9151115, z: -1.6069691}
+  m_LocalPosition: {x: 0, y: 5.9026856, z: -4.1138406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 337509081}
