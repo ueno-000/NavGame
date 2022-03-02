@@ -86,13 +86,7 @@ public class PlayerController : MonoBehaviour
             _anim.SetFloat("Speed", _agent.velocity.magnitude);
         }
     }
-    /// <summary>
-    /// Navi
-    /// </summary>
-    void StopNav()
-    {
-
-    }
+ 
 
     private void OnTriggerStay(Collider other)
     {

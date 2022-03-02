@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTowerSprict : MonoBehaviour
+public class EnemyTowerSprict : MonoBehaviour, IReceiveDamage
 {
     [SerializeField,Range(0,100)] int _hp = Mathf.Clamp(100, 0, 100);
     [SerializeField] TextHPSprict helth;
@@ -22,4 +22,10 @@ public class EnemyTowerSprict : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    public void ReceiveDamage(int damage)
+    {
+        Debug.Log("タワーは " + damage + "ダメージ食らった");
+        _hp -= damage;
+    }
+
 }
