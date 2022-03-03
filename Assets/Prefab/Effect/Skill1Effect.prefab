@@ -14156,7 +14156,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2403713714618156159}
-  - component: {fileID: 2364027565806543617}
+  - component: {fileID: 4082438886816523495}
+  - component: {fileID: 7314248666171103146}
+  - component: {fileID: -4302529375035937034}
   m_Layer: 0
   m_Name: Skill1Effect
   m_TagString: Untagged
@@ -14182,7 +14184,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2364027565806543617
+--- !u!135 &4082438886816523495
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2403713714618062943}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 11.7
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7314248666171103146
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14191,6 +14206,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2403713714618062943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db08735561a38424182823d8d175333b, type: 3}
+  m_Script: {fileID: 11500000, guid: 55f5de3c1791c7a48848946099dce1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &-4302529375035937034
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2403713714618062943}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
