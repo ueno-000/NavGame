@@ -6,7 +6,7 @@ public class Skill2Hit : MonoBehaviour
 {
     private void Start()
     {
-        Destroy(this, 2f);
+        Destroy(this.gameObject, 2f);
     }
 
     private void OnTriggerEnter(Collider other)
