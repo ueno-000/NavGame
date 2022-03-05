@@ -7,11 +7,24 @@ public class EnemyTowerSprict : MonoBehaviour, IReceiveDamage
     [SerializeField,Range(0,100)] int _hp = Mathf.Clamp(100, 0, 100);
     [SerializeField] TextHPSprict helth;
 
-    private void Start()
+    /// <summary>
+    /// 持っているコインと経験値
+    /// </summary>
+    [Header("持っているコインと経験値"),SerializeField]
+    int _hasCoin = 50;
+    [SerializeField] float _hasExp = 100f;
+
+    /// <summary>
+    /// プレイヤーの持っている値を取得等するため
+    /// </summary>
+    GameObject _player;
+    
+     private void Start()
     {
         helth = helth.GetComponent<TextHPSprict>();
+        _player = GameObject.Find("PlayerValueController");
     }
-    // Update is called once per frame
+
     void Update()
     {
         helth.UpdateSlider(_hp);
@@ -19,6 +32,14 @@ public class EnemyTowerSprict : MonoBehaviour, IReceiveDamage
         if(_hp == 0)
         {
             Debug.Log("タワーが消滅しました");
+
+            var _value = _player.GetComponent<IGetValue>();
+            //プレイヤーにコインと経験値を送る
+            if (_value != null)
+            {
+                _value.GetCoin(_hasCoin);
+                _value.GetEXP(_hasExp);
+            }
             Destroy(this.gameObject);
         }
     }
