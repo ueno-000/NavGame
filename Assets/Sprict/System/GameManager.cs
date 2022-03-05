@@ -21,10 +21,18 @@ public class GameManager : MonoBehaviour
     /// <summary>Playerが死んだ数</summary>
     int _playerDeathCount = 0;
     /// <summary></summary>
-
+    void Start()
+    {
+        // アクティブなオブジェクトを探す
+        GameObject target1 = GameObject.Find("FindTarget1");
+        Debug.Log("target1 = " + target1);
+        // 非アクティブなオブジェクトを探す
+        GameObject target2 = GameObject.Find("FindTarget2");
+        Debug.Log("target2 = " + target2);
+    }
     void Update()
     {
-
+        
     }
 
 }
