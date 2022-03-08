@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PlayerValueController : MonoBehaviour,IGetValue
 {
@@ -20,11 +21,12 @@ public class PlayerValueController : MonoBehaviour,IGetValue
     /// <summary>
     /// 経験値 
     /// </summary>
-    [Header("経験値"),SerializeField] float _playerExp = 0;
+    [Header("経験値"),SerializeField] int _playerExp = 0;
     [SerializeField] Text _expText;
     /// <summary>EXPテーブル </summary>
     [SerializeField] int[] _expTable = new int[10];
-
+    /// <summary> 次のレベルに持ち越す残った経験値 </summary>
+    [SerializeField] int _remainExp;
     /// <summary>時間</summary>
     float _time;
 
@@ -33,10 +35,11 @@ public class PlayerValueController : MonoBehaviour,IGetValue
     /// </summary>
     [Header("毎秒の加算処理")]
     [SerializeField] int _everyCoin = 10;
-    [SerializeField] float _everyExp= 1f;
+    [SerializeField] int _everyExp= 1;
 
     private void Update()
     {
+        _levelText.text = _playerLevel.ToString();
         _coinText.text = _playerCoin.ToString();
         _expText.text = _playerExp.ToString();
 
@@ -55,35 +58,43 @@ public class PlayerValueController : MonoBehaviour,IGetValue
         _playerCoin += getcoin;
        // _coinText.text = _playerCoin.ToString();
     }
-    public void GetEXP(float getexp)
+    public void GetEXP(int getexp)
     {
         _playerExp += getexp;
         //_expText.text = _playerExp.ToString();
     }
 
     //// Expを加算してLvを初期化する
-    //public void AddExp(int exp, int[] expArray)
-    //{
-    //    //カンストを考慮して加算
-    //    _exp = Mathf.Clamp(_exp + exp, 0, expArray[expArray.Length - 1]);
-    //    // 値の更新
-    //    UpdateLevel(expArray);
-    //    UpdateRemainExp(expArray);
-    //}
+    public void AddExp(int addexp, int[] expArray)
+    {
+        //カンストを考慮して加算
+        _playerExp = Mathf.Clamp(_playerExp + addexp, 0, expArray[expArray.Length - 1]);
+        // 値の更新
+        UpdateLevel(expArray);
+        UpdateRemainExp(expArray);
+    }
 
-    //void UpdateLevel(int[] expArray)
-    //{
-    //    // 現Exp以下の値の中で最大の値のインデックスを取得
-    //    var maxIdx = expArray.Where(x => x <= _exp).Select((val, idx) => new { V = val, I = idx })
-    //        .Aggregate((max, working) => (max.V > working.V) ? max : working).I;
-    //    _level = maxIdx + 1;
-    //}
+    //レベルアップの処理
+    void UpdateLevel(int[] expArray)
+    {
+        // 現Exp以下の値の中で最大の値のインデックスを取得
+        var maxIdx = expArray
+                          .Where(x => x <= _playerExp)//ｘはＥＸＰ以下の値
+                          .Select((val, idx) => new { V = val, I = idx })
+                          .Aggregate((maxVal, nexVal) => (maxVal.V > nexVal.V) ? maxVal : nexVal)//maxValがnexValより大きい時maxValを返す
+                          .I;//出た値のインデックスを取得
+        _playerLevel = maxIdx + 1;
+    }
 
-    //void UpdateRemainExp(int[] expArray)
-    //{
-    //    // 現Expより大きい値の中で最小の値のインデックスを取得
-    //    var minIdx = expArray.Where(x => x > _exp).Select((val, idx) => new { V = val, I = idx })
-    //        .Aggregate((min, working) => (min.V < working.V) ? min : working).I;
-    //    _remainExp = expArray[minIdx] - _exp;
-    //}
+    ///レベルアップ後の残ったExp
+    void UpdateRemainExp(int[] expArray)
+    {
+        // 現Expより大きい値の中で最小の値のインデックスを取得
+        var minIdx = expArray
+                        .Where(x => x > _playerExp)//ｘはＥＸＰ以下の値
+                        .Select((val, idx) => new { V = val, I = idx })
+                        .Aggregate((minVal, nexVal) => (minVal.V < nexVal.V) ? minVal : nexVal)//minValがnexValより小さい時minValを返す
+                        .I;//出た値のインデックスを取得
+        _remainExp = expArray[minIdx] - _playerExp;
+    }
 }

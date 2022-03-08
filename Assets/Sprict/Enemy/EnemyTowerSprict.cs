@@ -12,7 +12,7 @@ public class EnemyTowerSprict : MonoBehaviour, IReceiveDamage
     /// </summary>
     [Header("持っているコインと経験値"),SerializeField]
     int _hasCoin = 50;
-    [SerializeField] float _hasExp = 100f;
+    [SerializeField] int _hasExp = 100;
 
     /// <summary>
     /// プレイヤーの持っている値を取得等するため
