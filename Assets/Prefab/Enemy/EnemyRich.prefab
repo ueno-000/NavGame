@@ -843,9 +843,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 30
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -861,7 +861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b31ca8d0f302c43ac721c81413a7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
+  _maxHp: 30
+  hpSlider: {fileID: 0}
 --- !u!1 &5472729188696062979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1002,7 @@ GameObject:
   - component: {fileID: 1107639151}
   - component: {fileID: 1731610391}
   - component: {fileID: 1031977221596468200}
+  - component: {fileID: 1088608522692256702}
   m_Layer: 2
   m_Name: EnemyRich
   m_TagString: Enemy
@@ -1107,14 +1109,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6cd2e9fe07a6b46abdbc68a927baec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: []
+  _points:
+  - {x: 12, y: 0, z: 15}
+  - {x: 15, y: 0, z: 12}
+  - {x: 18, y: 0, z: 15}
+  - {x: 15, y: 0, z: 18}
   _agent: {fileID: 0}
   _attackRange: 10
-  _hp: 0
-  _maxHp: 10
   action: 0
   _time: 5
   _timeAttack: 5
+--- !u!114 &1088608522692256702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6931458598396433524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2329198c40ba66e429ea736337e21a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hp: 30
+  _maxHp: 30
+  helth: {fileID: 3256895773735437920}
+  _hasCoin: 50
+  _hasExp: 100
 --- !u!1 &6946296762080210432
 GameObject:
   m_ObjectHideFlags: 0

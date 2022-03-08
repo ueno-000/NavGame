@@ -51,28 +51,38 @@ public class PlayerValueController : MonoBehaviour,IGetValue
             _playerCoin += _everyCoin; 
             _playerExp += _everyExp;
         }
+
+        AddExp(_expTable);
     }
+
 
     public void GetCoin(int getcoin)
     {
         _playerCoin += getcoin;
-       // _coinText.text = _playerCoin.ToString();
     }
     public void GetEXP(int getexp)
     {
         _playerExp += getexp;
-        //_expText.text = _playerExp.ToString();
     }
 
     //// Expを加算してLvを初期化する
-    public void AddExp(int addexp, int[] expArray)
+    public void AddExp(int[] _playerTable)
     {
         //カンストを考慮して加算
-        _playerExp = Mathf.Clamp(_playerExp + addexp, 0, expArray[expArray.Length - 1]);
+        _playerExp = Mathf.Clamp(_playerExp, 0, _playerTable[_playerTable.Length - 1]);
         // 値の更新
-        UpdateLevel(expArray);
-        UpdateRemainExp(expArray);
+        UpdateLevel(_playerTable);
+        UpdateRemainExp(_playerTable);
     }
+    //// Expを加算してLvを初期化する
+    //public void AddExp(int addexp, int[] expArray)
+    //{
+    //    //カンストを考慮して加算
+    //    _playerExp = Mathf.Clamp(_playerExp + addexp, 0, expArray[expArray.Length - 1]);
+    //    // 値の更新
+    //    UpdateLevel(expArray);
+    //    UpdateRemainExp(expArray);
+    //}
 
     //レベルアップの処理
     void UpdateLevel(int[] expArray)

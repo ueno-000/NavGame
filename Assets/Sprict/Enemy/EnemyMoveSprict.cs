@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemySprictBace : MonoBehaviour
+public class EnemyMoveSprict : MonoBehaviour
 {
     // 巡回地点オブジェクトを格納する配列
     [Header("巡回Pointを指定する")]
@@ -26,10 +26,6 @@ public class EnemySprictBace : MonoBehaviour
     [Header("コライダーの範囲")]
     [SerializeField,Range(1.0f, 10.0f)] float _attackRange;
 
-    [Space(10)]
-    [SerializeField] public int _hp = 50;
-    [SerializeField] int _maxHp = 50;
-
     //animation
     Animator _anim = default;
 
@@ -50,18 +46,6 @@ public class EnemySprictBace : MonoBehaviour
         Patrol,//決められた地点を巡回する
         Chase,//対象のキャラクターを追いかける
         Attack//攻撃
-    }
-
-    public int Hp
-    {
-        set
-        {
-            _hp = Mathf.Clamp(value, 0, _maxHp);
-        }
-        get
-        {
-            return _hp;
-        }
     }
 
 
@@ -110,6 +94,7 @@ public class EnemySprictBace : MonoBehaviour
         {
             _anim.SetFloat("Speed", _agent.velocity.magnitude);
         }
+
 
 
         //＝＝＝＝以下列挙型の処理＝＝＝＝
@@ -184,9 +169,4 @@ public class EnemySprictBace : MonoBehaviour
 
     }
 
-    public void ReceiveDamage(int damage)
-    {
-        Debug.Log("リッチは " + damage + "ダメージ食らった");
-        _hp -= damage;
-    }
 }
