@@ -37,6 +37,10 @@ public class PlayerValueController : MonoBehaviour,IGetValue
     [SerializeField] int _everyCoin = 10;
     [SerializeField] int _everyExp= 1;
 
+    private void Start()
+    {
+        _playerExp = Mathf.Clamp(_playerExp, 0, _expTable[_expTable.Length - 1]);
+    }
     private void Update()
     {
         _levelText.text = _playerLevel.ToString();
@@ -52,7 +56,9 @@ public class PlayerValueController : MonoBehaviour,IGetValue
             _playerExp += _everyExp;
         }
 
-        AddExp(_expTable);
+        //UpdateLevel(_expTable);
+        //UpdateRemainExp(_expTable);
+
     }
 
 
@@ -64,25 +70,6 @@ public class PlayerValueController : MonoBehaviour,IGetValue
     {
         _playerExp += getexp;
     }
-
-    //// Expを加算してLvを初期化する
-    public void AddExp(int[] _playerTable)
-    {
-        //カンストを考慮して加算
-        _playerExp = Mathf.Clamp(_playerExp, 0, _playerTable[_playerTable.Length - 1]);
-        // 値の更新
-        UpdateLevel(_playerTable);
-        UpdateRemainExp(_playerTable);
-    }
-    //// Expを加算してLvを初期化する
-    //public void AddExp(int addexp, int[] expArray)
-    //{
-    //    //カンストを考慮して加算
-    //    _playerExp = Mathf.Clamp(_playerExp + addexp, 0, expArray[expArray.Length - 1]);
-    //    // 値の更新
-    //    UpdateLevel(expArray);
-    //    UpdateRemainExp(expArray);
-    //}
 
     //レベルアップの処理
     void UpdateLevel(int[] expArray)

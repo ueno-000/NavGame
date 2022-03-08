@@ -18,11 +18,16 @@ public class EnemyTowerSprict : MonoBehaviour, IReceiveDamage
     /// プレイヤーの持っている値を取得等するため
     /// </summary>
     GameObject _player;
-    
+    /// <summary>
+    /// Gamemanager
+    /// </summary>
+    GameObject gameManager;
+
      private void Start()
     {
         helth = helth.GetComponent<TextHPSprict>();
         _player = GameObject.Find("PlayerValueController");
+        gameManager = GameObject.Find("GameManager");
     }
 
     void Update()
@@ -34,12 +39,16 @@ public class EnemyTowerSprict : MonoBehaviour, IReceiveDamage
             Debug.Log("タワーが消滅しました");
 
             var _value = _player.GetComponent<IGetValue>();
+            var _death = gameManager.GetComponent<IDeathCount>();
+
             //プレイヤーにコインと経験値を送る
             if (_value != null)
             {
                 _value.GetCoin(_hasCoin);
                 _value.GetEXP(_hasExp);
+                _death.CountDeath(1);
             }
+
             Destroy(this.gameObject);
         }
     }
