@@ -14,6 +14,14 @@ public class EnemyValueScript : MonoBehaviour, IReceiveDamage
     int _hasCoin = 50;
     [SerializeField] int _hasExp = 100;
 
+    /// <summary>攻撃を受けたかの判定</summary>
+    bool _isKnock = false;
+
+
+    //enemyの点滅で使う
+    [Header("Lichのマテリアルがついているゲームオブジェクトを格納"), SerializeField] GameObject _skinObject;
+    SkinnedMeshRenderer _renderer;
+
     /// <summary>
     /// プレイヤーの持っている値を取得等するため
     /// </summary>
@@ -39,6 +47,8 @@ public class EnemyValueScript : MonoBehaviour, IReceiveDamage
         helth = helth.GetComponent<HPController>();
         _player = GameObject.Find("PlayerValueController");
         gameManager = GameObject.Find("GameManager");
+        //点滅処理の為に呼び出しておく
+        _renderer = _skinObject.GetComponent<SkinnedMeshRenderer>();
     }
 
     void Update()
@@ -59,13 +69,23 @@ public class EnemyValueScript : MonoBehaviour, IReceiveDamage
                 _value.GetEXP(_hasExp);
                 _death.CountDeath(1);
             }
-
-            Destroy(this.gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
     public void ReceiveDamage(int damage)
     {
         Debug.Log("リッチは " + damage + "ダメージ食らった");
-        _hp -= damage;
+
+        if (_isKnock == false)
+        {
+            _hp -= damage;
+            _isKnock = true;
+            StartCoroutine("DamageTime");
+        }
+    }
+    IEnumerator DamageTime()
+    {
+        yield return new WaitForSeconds(1f);
+        _isKnock = false;
     }
 }

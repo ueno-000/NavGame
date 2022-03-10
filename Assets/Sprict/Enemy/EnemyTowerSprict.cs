@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyTowerSprict : MonoBehaviour, IReceiveDamage
 {
-    [SerializeField,Range(0,100)] int _hp = Mathf.Clamp(100, 0, 100);
+    [SerializeField,Range(0,500)] int _hp = Mathf.Clamp(100, 0, 500);
     [SerializeField] TextHPSprict helth;
 
     /// <summary>

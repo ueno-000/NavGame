@@ -29,9 +29,8 @@ public class EnemyMoveSprict : MonoBehaviour
     //animation
     Animator _anim = default;
 
-
     //Player
-    GameObject _player = default;
+    GameObject _player;
 
     //インスペクター上から行動設定できるようにする
     [SerializeField] Action action = Action.Patrol;
@@ -40,6 +39,8 @@ public class EnemyMoveSprict : MonoBehaviour
     [SerializeField] float _time;
     [Tooltip("Caractorを攻撃する時間")]
     [SerializeField] float _timeAttack;
+
+   
 
     enum Action
     {
@@ -52,7 +53,7 @@ public class EnemyMoveSprict : MonoBehaviour
     void Start()
     {
         //Playerタグのオブジェクトを取得
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _player = GameObject.Find("Player");
 
         _attackCol = GetComponent<SphereCollider>();
         
@@ -165,8 +166,12 @@ public class EnemyMoveSprict : MonoBehaviour
 
     void LichEnemyAttack()
     {
+        var hit = _player.GetComponent<IReceiveDamage>();
         _anim.SetTrigger("Attack");
+        Debug.Log(hit);
 
+        if (hit != null)
+        hit.ReceiveDamage(20);
     }
 
 }

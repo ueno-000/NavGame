@@ -7,6 +7,9 @@ public class EnemyGenerationSprict : MonoBehaviour
     [Header("EnemyPrefabをセットする")]
     [SerializeField] GameObject _enemyPrefab;
 
+    [Header("生成数")]
+    [SerializeField] int _enemyNum;
+
     //生成ポジションの指定
     [Header("生成ポジションの配列")]
     [SerializeField] Transform[]  _position;
@@ -15,22 +18,42 @@ public class EnemyGenerationSprict : MonoBehaviour
     //生成間隔の時間指定
     [SerializeField] float _time = 5f;
     [SerializeField] float _setTime = 5f;
-    // Update is called once per frame
-    void Update()
+
+    /// <summary>
+    /// ヒエラルキー上にいる敵の数
+    /// </summary>
+    private GameObject[] _enemyBox;
+
+
+
+    void FixedUpdate()
     {
+        _enemyBox = GameObject.FindGameObjectsWithTag("Enemy");
 
         //時間
         _time += Time.deltaTime;
 
-        //_timeが_setTimeより大きくなったらprefabを生成する
-
-        if (_time > _setTime)
+        //ヒエラルキー上のEnemyの数が指定した数以下のときは生成する
+        if (_enemyBox.Length <= _enemyNum)
         {
-            for (int i = 0; i < _position.Length; i++) 
+            //_timeが_setTimeより大きくなったらprefabを生成する
+            if (_time > _setTime)
             {
-                Instantiate(_enemyPrefab, _position[i]);
+                for (int i = 0; i < _position.Length; i++)
+                {
+                    if (_position[i] != null)
+                    {
+                        Instantiate(_enemyPrefab, _position[i]);
+                    }
+                    else
+                    {
+                        Debug.Log("生成できません");
+                    }
+                }
+                _time = 0;
             }
-            _time = 0;
         }
     }
+
+
 }
