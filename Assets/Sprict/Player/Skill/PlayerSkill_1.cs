@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using HC.Debug;
+
 
 /// <summary>
 /// Skill1 Playerから360度範囲に波動が出る
@@ -20,6 +22,23 @@ public class PlayerSkill_1 : OnMouseBace
     //生成する位置
     [Header("生成位置"), SerializeField] Transform _position;
 
+    [SerializeField] GameObject _player;
+
+    /// <summary>
+    /// Damage
+    /// </summary>
+    [Header("ダメージ"), SerializeField] public int _damage = 10;
+    /// <summary>
+    /// 消費MP
+    /// </summary>
+    [Header("消費MP"), SerializeField] public int _minusMP = 10;
+    /// <summary>
+    /// インターバル
+    /// </summary>
+    [Header("スキルを使ってからのインターバル"), SerializeField] float _skillInterval = 10f;
+    [SerializeField] Text _intervelText;
+
+
     //=====Physics Debuggeの設定=====
     [Header("可視コライダーの色"), Header("Physics Debuggeの設定"), SerializeField]
     private ColliderVisualizer.VisualizerColorType _visualizerColor;
@@ -32,7 +51,6 @@ public class PlayerSkill_1 : OnMouseBace
     {
         _hitArea.SetActive(false);
         _hitAreaCol = _hitArea.GetComponent<SphereCollider>();
-        //_hitArea.AddComponent<ColliderVisualizer>().Initialize(_visualizerColor, _message, _fontSize);
     }
     void Update()
     {
@@ -55,6 +73,8 @@ public class PlayerSkill_1 : OnMouseBace
     public void OnSkill1()
     {
         Instantiate(_skillEffect, _position.position, Quaternion.identity);
+        var mp = _player.GetComponent<IMPValue>();
+        mp.MinusMP(_minusMP);
         _hitArea.SetActive(false);
     }
 }

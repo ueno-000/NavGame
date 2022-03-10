@@ -17,6 +17,15 @@ public class PlayerSkill_3 : OnMouseBace
     /// <summary>光弾のスピード</summary>
     [Header("スピード"), SerializeField] public float _speed = 5f;
 
+    /// <summary>
+    /// Damage
+    /// </summary>
+    [Header("ダメージ"), SerializeField] public int _damage = 10;
+    /// <summary>
+    /// 消費MP
+    /// </summary>
+    [Header("消費MP"), SerializeField] public int _minusMP = 10;
+
     /// <summary>Mouseのposition </summary>
     Vector3 _mouse;
 

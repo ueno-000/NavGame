@@ -4,20 +4,25 @@
 /// </summary>
 public class Skill1Hit : MonoBehaviour
 {
+    GameObject _skill;
+    PlayerSkill_1 playerSkill_1;
+
     private void Start()
     {
+        _skill = GameObject.Find("Skill1");
+        playerSkill_1 = _skill.GetComponent<PlayerSkill_1>();
         Destroy(this.gameObject, 2f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("何かに触れた");
         // インターフェイスを取得
         var hit = other.gameObject.GetComponent<IReceiveDamage>();
+        //Debug.Log(hit);
         // 触れた相手がダメージを受ける
-        if (hit != null)
+        if (hit != null && other.tag != "Player")
         {
-            hit.ReceiveDamage(10);
+            hit.ReceiveDamage(playerSkill_1._damage);
         }
     }
 }
