@@ -168,10 +168,10 @@ public class EnemyMoveSprict : MonoBehaviour
     {
         var hit = _player.GetComponent<IReceiveDamage>();
         _anim.SetTrigger("Attack");
-        Debug.Log(hit);
+
 
         if (hit != null)
-        hit.ReceiveDamage(20);
+        hit.ReceiveDamage(10);
     }
 
 }

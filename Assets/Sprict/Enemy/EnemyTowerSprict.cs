@@ -39,14 +39,14 @@ public class EnemyTowerSprict : MonoBehaviour, IReceiveDamage
             Debug.Log("タワーが消滅しました");
 
             var _value = _player.GetComponent<IGetValue>();
-            var _death = gameManager.GetComponent<IDeathCount>();
+            var _death = gameManager.GetComponent<IKillCount>();
 
             //プレイヤーにコインと経験値を送る
             if (_value != null)
             {
                 _value.GetCoin(_hasCoin);
                 _value.GetEXP(_hasExp);
-                _death.CountDeath(1);
+                _death.CountKill(1);
             }
 
             Destroy(this.gameObject);

@@ -26,7 +26,7 @@ public class TutorialManager : MonoBehaviour
     private bool task_executed = false;
 
     // チュートリアル表示時のUI移動距離
-    private float fade_pos_x = 200;
+    private float fade_pos_x = 250;
 
     void Start()
     {
