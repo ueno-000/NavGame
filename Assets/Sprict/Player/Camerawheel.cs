@@ -51,8 +51,8 @@ public class Camerawheel : MonoBehaviour
         if (_framingTransposer == null)
             return;
 
-     _framingTransposer.m_CameraDistance = 4;
-
+        _framingTransposer.m_CameraDistance = 20;
+        _targetDistance = _maxDistance;
     }
 
     // カメラワーク更新
