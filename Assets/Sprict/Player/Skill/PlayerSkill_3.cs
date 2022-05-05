@@ -57,9 +57,12 @@ public class PlayerSkill_3 : OnMouseBace
                     _hitDirection.transform.position = hit.point;
                 }
             }
+            Vector3 Vector3Test = _hitDirection.transform.position - _playerPosition.transform.position;
+            Quaternion quaternion = Quaternion.identity;
+            quaternion = Quaternion.Euler(Vector3Test);
             if (Input.GetButtonDown("Fire1"))
             {
-               // Instantiate(_lightBullet, _playerPosition.position, _hitDirection.transform.position - _playerPosition.transform.position);
+               Instantiate(_lightBullet, _playerPosition.position,quaternion);
                 _hitDirection.SetActive(false);
                 _isSkill2ButtonPushed = false;
             }
