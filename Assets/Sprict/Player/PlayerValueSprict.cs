@@ -133,7 +133,7 @@ public class PlayerValueSprict : MonoBehaviour,IReceiveDamage,IMPValue
 
         if (_isKnock == false && _debugMode == false)
         {
-            _anim.SetTrigger("Damage");
+            //_anim.SetTrigger("Damage");
             _hp -= damage;
             _isKnock = true;
             StartCoroutine("DamageTime");
