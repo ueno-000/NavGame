@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMoveSprict : MonoBehaviour
+public class EnemyMoveScript : MonoBehaviour
 {
     // 巡回地点オブジェクトを格納する配列
     [Header("巡回Pointを指定する")]
