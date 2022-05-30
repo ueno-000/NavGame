@@ -39,6 +39,7 @@ public class Scenemanager : MonoBehaviour
             //ImageのColorは透明に設定
         }
     }
+
     public void Exit()
     {
         Application.Quit();
