@@ -9,12 +9,12 @@ public class GameManager : MonoBehaviour,IKillCount
 {
     public readonly static GameManager Instance = new GameManager();
 
-    [Header("SceneManagerを格納"), SerializeField] GameObject _sceneManager;
+    [Tooltip("SceneManagerを格納"), SerializeField] GameObject _sceneManager;
     Scenemanager scenemanager;
 
     /// <summary>1ラウンドのゲーム時間</summary>
-    [Header("ゲームの制限時間"),SerializeField] public float _gameTimeCount;
-    [Header("制限時間表示のテキスト"), SerializeField] Text _timeText;
+    [Tooltip("ゲームの制限時間"),SerializeField] public float _gameTimeCount;
+    [Tooltip("制限時間表示のテキスト"), SerializeField] Text _timeText;
     
     /// <summary>所持金</summary>
     [SerializeField] public int _money = 500;

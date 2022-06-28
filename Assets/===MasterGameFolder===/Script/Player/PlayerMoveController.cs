@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;   // Navmesh Agent を使うために必要
+using Photon.Pun;
 
 /// <summary>
 /// Navmesh Agent を使って経路探索を行い、移動するためのコンポーネント
@@ -27,8 +28,20 @@ public class PlayerMoveController : MonoBehaviour
     /// <summary>リスポーンしたら動かしたくないので作った判定</summary>
     bool _isStop = false;
 
+    PhotonView m_view;
+    Rigidbody m_rb;
+
     void Start()
-    { 
+    {
+        m_view = GetComponent<PhotonView>();
+        if (m_view)
+        {
+            if (m_view.IsMine)
+            {
+                // 同期元（自分で操作して動かす）オブジェクトの場合のみ Rigidbody を使う
+                m_rb = GetComponent<Rigidbody>();
+            }
+        }
         _agent = GetComponent<NavMeshAgent>();
         // 初期位置を保存する（※）
         _cachedTargetPosition = _maker.position; 
@@ -46,6 +59,8 @@ public class PlayerMoveController : MonoBehaviour
 
     void Update()
     {
+        if (m_view && !m_view.IsMine) return;  // 同期先のオブジェクトだった場合は何もしない
+
         // _target が移動したら Navmesh Agent を使って移動させる
         if (Vector3.Distance(_cachedTargetPosition, _maker.position) > Mathf.Epsilon) // _target が移動したら
         {

@@ -13,14 +13,16 @@ public class Scenemanager : MonoBehaviour
     public void FadeOut(string scene)
     {
         _fadeImage.gameObject.SetActive(true);
-        this._fadeImage.DOFade(duration: 1f, endValue: 1f).OnComplete(() 
+        this._fadeImage.DOFade(duration: 1f, endValue: 1f)
+            .OnComplete(() 
             => SceneManager.LoadScene(scene));
         //ImageのColorは透明に設定
     }
 
     public void FadeIn()
     {
-        _fadeImage.DOFade(duration: 0, endValue: 1f).OnComplete(()
+        _fadeImage.DOFade(duration: 0, endValue: 1f)
+            .OnComplete(()
               => _fadeImage.gameObject.SetActive(false));
         //ImageのColorは黑に設定
     }
