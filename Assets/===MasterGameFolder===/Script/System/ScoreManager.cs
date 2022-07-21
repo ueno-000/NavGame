@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+/// <summary>
+/// スコア表示のscript
+/// 
+/// </summary>
 public class ScoreManager : MonoBehaviour
 {
-    [Header("敵を倒した数"), SerializeField] int _killCount;
-    [SerializeField] Text _killCountText;
-    [Header("勝敗のテキスト"),SerializeField] Text _resultText;
+    [Tooltip("敵を倒した数"), SerializeField] private int _killCount;
+    [SerializeField] private Text _killCountText;
+    [Tooltip("勝敗のテキスト"),SerializeField] private Text _resultText;
 
     /// <summary>勝敗の判定</summary>
-    bool _isClear = false;
+    private bool _isClear = false;
 
     private void Start()
     {
