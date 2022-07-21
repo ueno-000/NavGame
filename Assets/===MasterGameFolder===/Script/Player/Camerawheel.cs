@@ -2,45 +2,34 @@
 using UnityEngine;
 
 /// <summary>
-/// CinemachineVirtualCameraのドリー操作（滑らかな変化版）
+/// CinemachineVirtualCameraのドリー操作
 /// </summary>
 public class Camerawheel : MonoBehaviour
 {
 
     //カメラ
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
-    [SerializeField] GameObject _camera;
-     bool _isMainCamera = false;
-    [SerializeField] GameObject _spriteCameraOff;
-    /// <summary>
-    /// ホイール感度
-    /// </summary>
+    [SerializeField] private GameObject _camera;
+    [SerializeField] private GameObject _spriteCameraOff;
+    /// <summary>ホイール感度</summary>
     [SerializeField] private float _sensitivity = 1;
 
-    // 対象との最大値
+    /// <summary> 対象との最大値</summary>
     [SerializeField] private float _maxDistance = 20;
-    // 対象との最小値
+    /// <summary>対象との最小値</summary>
     [SerializeField] private float _minDistance = 1;
 
-
-    /// <summary>
-    /// 距離の切り替え時間
-    /// </summary>
+    /// <summary>距離の切り替え時間</summary>
     [SerializeField] private float _smoothTime = 1;
 
     private CinemachineFramingTransposer _framingTransposer;
+    private bool _isMainCamera = false;
 
-    /// <summary>
-    /// 現在値
-    /// </summary>
+    /// <summary>現在値 </summary>
     private float _currentDistance;
-    /// <summary>
-    /// 目標値
-    /// </summary>
+    /// <summary> 目標値</summary>
     private float _targetDistance;
-    /// <summary>
-    /// 現在速度を格納する変数
-    /// </summary>
+    /// <summary> 現在速度を格納する変数 </summary>
     private float _currentVelocity;
 
 
