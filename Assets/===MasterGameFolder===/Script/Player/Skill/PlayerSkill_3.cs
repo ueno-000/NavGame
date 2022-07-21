@@ -9,34 +9,39 @@ public class PlayerSkill_3 : OnMouseBace
     /// <summary>発射する向き</summary>
     [Header("Player→Skill→[Skill3]をアタッチ"), SerializeField] public GameObject _hitDirection;
 
-    [Header("Prefub→Skill→[SkillEffect3]をアタッチ"), SerializeField] GameObject _lightBullet;
+    [Header("Prefub→Skill→[SkillEffect3]をアタッチ"), SerializeField] private GameObject _lightBullet;
 
     //生成する位置
-    [Header("Player"), SerializeField]public Transform _playerPosition;
+    [Tooltip("Player"), SerializeField] public Transform _playerPosition;
 
     /// <summary>光弾のスピード</summary>
-    [Header("スピード"), SerializeField] public float _speed = 5f;
+    [Tooltip("スピード"), SerializeField] public float _speed = 5f;
 
     /// <summary>
     /// Damage
     /// </summary>
-    [Header("ダメージ"), SerializeField] public int _damage = 10;
+    [Tooltip("ダメージ"), SerializeField] public int _damage = 10;
     /// <summary>
     /// 消費MP
     /// </summary>
-    [Header("消費MP"), SerializeField] public int _minusMP = 10;
+    [Tooltip("消費MP"), SerializeField] public int _minusMP = 10;
 
     /// <summary>Mouseのposition </summary>
-    Vector3 _mouse;
+    private Vector3 _mouse;
 
     /// <summary>buttonが押された時の判定</summary>
-    bool _isSkill2ButtonPushed = false;
+    private bool _isSkill2ButtonPushed = false;
 
     private void Start()
     {
         _hitDirection.SetActive(false);
     }
     void Update()
+    {
+        HitSkill();
+    }
+
+    private void HitSkill()
     {
         //ボタンが押されたら
         if (_isSkill2ButtonPushed == true)
@@ -62,12 +67,13 @@ public class PlayerSkill_3 : OnMouseBace
             quaternion = Quaternion.Euler(Vector3Test);
             if (Input.GetButtonDown("Fire1"))
             {
-               Instantiate(_lightBullet, _playerPosition.position,quaternion);
+                Instantiate(_lightBullet, _playerPosition.position, quaternion);
                 _hitDirection.SetActive(false);
                 _isSkill2ButtonPushed = false;
             }
         }
     }
+
     public override void OnMouseOver()
     {
         _image[0].SetActive(true);

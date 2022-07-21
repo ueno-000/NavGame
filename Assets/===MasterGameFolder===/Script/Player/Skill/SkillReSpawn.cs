@@ -9,11 +9,11 @@ public class SkillReSpawn : OnMouseBace
     /// Respawnボタンが押されたかの判定
     /// </summary>
 
-    [SerializeField]public bool _isReSpawn = false;
+    [SerializeField]public bool isReSpawn = false;
     
 
     public void OnReSpawn()
     {
-        _isReSpawn = true;
+        isReSpawn = true;
     }
 }

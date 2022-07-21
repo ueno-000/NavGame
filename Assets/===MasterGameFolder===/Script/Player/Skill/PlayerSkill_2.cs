@@ -9,35 +9,35 @@ using HC.Debug;
 public class PlayerSkill_2 : OnMouseBace
 { 
     /// <summary>攻撃範囲 </summary>
-    [Header("Player→Skill→[Skill2]をアタッチ"), SerializeField] GameObject _hitArea;
-    [Header("Player→Skill→[Skill2]をアタッチ"), SerializeField] SphereCollider _hitAreaCol;
-    [SerializeField, Range(0.1f, 2f)] float _hitRange = 0.5f;
+    [Header("Player→Skill→[Skill2]をアタッチ"), SerializeField] private GameObject _hitArea;
+    [Header("Player→Skill→[Skill2]をアタッチ"), SerializeField] private SphereCollider _hitAreaCol;
+    [SerializeField, Range(0.1f, 2f)] private float _hitRange = 0.5f;
 
     /// <summary>Effectのprefab</summary>
-    [SerializeField] GameObject _skillEffect;
+    [SerializeField] private GameObject _skillEffect;
     //生成する位置
     Vector3 _position;
 
-    [SerializeField] GameObject _hitRangeArea;
-    [SerializeField] Collider _collider;
+    [SerializeField] private GameObject _hitRangeArea;
+    [SerializeField] private Collider _collider;
 
-    [Header("Player"), SerializeField] GameObject _player;
+    [Tooltip("Player"), SerializeField] private GameObject _player;
 
     /// <summary>Mouse</summary>
-    Vector3　_mouse;
-    [Header("マウスのテクスチャを変える"),SerializeField] Texture2D cursorTexture;
+    private Vector3 _mouse;
+    [Tooltip("マウスのテクスチャを変える"),SerializeField] private Texture2D cursorTexture;
 
     /// <summary>buttonが押された時の判定</summary>
-    bool _isSkill2ButtonPushed = false;
+    private bool _isSkill2ButtonPushed = false;
 
     /// <summary>
     /// Damage
     /// </summary>
-    [Header("ダメージ"), SerializeField] public int _damage = 10;
+    [Tooltip("ダメージ"), SerializeField] public int _damage = 10;
     /// <summary>
     /// 消費MP
     /// </summary>
-    [Header("消費MP"), SerializeField] public int _minusMP = 10;
+    [Tooltip("消費MP"), SerializeField] public int _minusMP = 10;
 
     //=====Physics Debuggeの設定=====
     [Header("可視コライダーの色"), Header("Physics Debuggeの設定"), SerializeField]
@@ -62,6 +62,14 @@ public class PlayerSkill_2 : OnMouseBace
         //コライダーの大きさをupdateで変える
         _hitAreaCol.radius = _hitRange;
 
+        HitSkill();
+    }
+
+    /// <summary>
+    /// スキルの処理
+    /// </summary>
+    private void HitSkill()
+    {
         //ボタンが押されたら
         if (_isSkill2ButtonPushed == true)
         {
@@ -75,7 +83,7 @@ public class PlayerSkill_2 : OnMouseBace
 
             // スクリーン座標をワールド座標に変換する
             _position = Camera.main.ScreenToWorldPoint(_mouse);
-        
+
 
             Ray ray = Camera.main.ScreenPointToRay(_mouse);
 
@@ -117,6 +125,7 @@ public class PlayerSkill_2 : OnMouseBace
             }
         }
     }
+
     public override void OnMouseOver()
     {
         _image[0].SetActive(true);

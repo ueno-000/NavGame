@@ -12,31 +12,31 @@ public class PlayerSkill_1 : OnMouseBace
     /// <summary>
     /// 攻撃範囲
     /// </summary>
-    [Header("Player→Skill→[Skill1]をアタッチ"),SerializeField] GameObject _hitArea;
-    [Header("Player→Skill→[Skill1]をアタッチ"), SerializeField] SphereCollider _hitAreaCol;
-    [SerializeField, Range(0.1f, 2f)] float _hitRange = 1f; 
+    [Header("Player→Skill→[Skill1]をアタッチ"),SerializeField] private GameObject _hitArea;
+    [Header("Player→Skill→[Skill1]をアタッチ"), SerializeField] private SphereCollider _hitAreaCol;
+    [SerializeField, Range(0.1f, 2f)] private float _hitRange = 1f; 
     /// <summary>
     /// Effectのprefab
     /// </summary>
-    [SerializeField] GameObject _skillEffect;
+    [SerializeField] private GameObject _skillEffect;
     //生成する位置
-    [Header("生成位置"), SerializeField] Transform _position;
+    [Tooltip("生成位置"), SerializeField] private Transform _position;
 
-    [SerializeField] GameObject _player;
+    [SerializeField] private GameObject _player;
 
     /// <summary>
     /// Damage
     /// </summary>
-    [Header("ダメージ"), SerializeField] public int _damage = 10;
+    [Tooltip("ダメージ"), SerializeField] public int _damage = 10;
     /// <summary>
     /// 消費MP
     /// </summary>
-    [Header("消費MP"), SerializeField] public int _minusMP = 10;
+    [Tooltip("消費MP"), SerializeField] public int _minusMP = 10;
     /// <summary>
     /// インターバル
     /// </summary>
-    [Header("スキルを使ってからのインターバル"), SerializeField] float _skillInterval = 10f;
-    [SerializeField] Text _intervelText;
+    [Tooltip("スキルを使ってからのインターバル"), SerializeField] private float _skillInterval = 10f;
+    [SerializeField] private Text _intervelText;
 
 
     //=====Physics Debuggeの設定=====

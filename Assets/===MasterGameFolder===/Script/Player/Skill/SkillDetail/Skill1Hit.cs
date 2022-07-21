@@ -4,8 +4,8 @@
 /// </summary>
 public class Skill1Hit : MonoBehaviour
 {
-    GameObject _skill;
-    PlayerSkill_1 playerSkill_1;
+    private GameObject _skill;
+    private PlayerSkill_1 playerSkill_1;
 
     private void Start()
     {
