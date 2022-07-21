@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+/// <summary>
+/// 頭上HPバーを回転しないようにする
+/// </summary>
 public class HPUIRotate : MonoBehaviour
 {
     void LateUpdate()

@@ -6,23 +6,30 @@
 /// </summary>
 public class MarkerController : MonoBehaviour
 {
-   // [SerializeField] Camera _mapCamera;
     /// <summary>Ray が何にも当たらなかった時、Scene に表示する Ray の長さ</summary>
-    [SerializeField] float _debugRayLength = 100f;
+    [SerializeField] private float _debugRayLength = 100f;
     /// <summary>Ray が何かに当たった時に Scene に表示する Ray の色</summary>
-    [SerializeField] Color _debugRayColorOnHit = Color.red;
+    [SerializeField] private Color _debugRayColorOnHit = Color.red;
     /// <summary>ここに GameObject を設定すると、飛ばした Ray が何かに当たった時にそこに m_marker オブジェクトを移動する</summary>
     [SerializeField] public GameObject _marker;
     /// <summary>飛ばした Ray が当たった座標に m_marker を移動する際、Ray が当たった座標からどれくらいずらした場所に移動するかを設定する</summary>
-    [SerializeField] Vector3 _markerOffset = Vector3.up * 0.01f;
+    [SerializeField] private Vector3 _markerOffset = Vector3.up * 0.01f;
 
-    Animator _anim;
+    private Animator _anim;
 
     private void Start()
     {
         _anim = GetComponent<Animator>();
     }
     void Update()
+    {
+        ClickRaycast();
+    }
+
+    /// <summary>
+    /// マウスクリックで移動地点にマーカーを移動させる処理
+    /// </summary>
+    private void ClickRaycast()
     {
         // クリックで Ray を飛ばす
         if (Input.GetButtonDown("Fire2"))
@@ -50,7 +57,6 @@ public class MarkerController : MonoBehaviour
             }
         }
     }
-
 
 }
 

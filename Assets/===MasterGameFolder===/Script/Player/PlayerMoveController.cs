@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;   // Navmesh Agent を使うために必要
-using Photon.Pun;
 
 /// <summary>
 /// Navmesh Agent を使って経路探索を行い、移動するためのコンポーネント
@@ -8,40 +7,27 @@ using Photon.Pun;
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMoveController : MonoBehaviour
 {
-
-    [Header("ReSpawn位置：ReSpawnPrefab→Area→［Spawn］をアタッチ"), SerializeField] Transform _reSpawnArea;
-
+    /// <summary>拠点のTransform</summary>
+    [Header("ReSpawn位置：ReSpawnPrefab→Area→［Spawn］をアタッチ"), SerializeField] private Transform _reSpawnArea;
     /// <summary>移動先となる位置情報</summary>
-    [Space(5),SerializeField] Transform _maker = default;
+    [Space(5),SerializeField] private Transform _maker = default;
     /// <summary>移動先座標を保存する変数</summary>
-    Vector3 _cachedTargetPosition;
+    private Vector3 _cachedTargetPosition;
 
     /// <summary>キャラクターなどのアニメーションするオブジェクトを指定する</summary>
-    [SerializeField] Animator _anim = default;
+    [SerializeField] private Animator _anim = default;
 
     /// <summary> NavMesh Agent コンポーネントを格納する変数</summary>
-    NavMeshAgent _agent = default;
+    private NavMeshAgent _agent = default;
 
     /// <summary>ReSpawnの判定に使う</summary>
-    [Header("Canvas→PlayerUI→Respawnをアタッチ"),SerializeField]SkillReSpawn _respwanSprict;
+    [Header("Canvas→PlayerUI→Respawnをアタッチ"),SerializeField] private SkillReSpawn _respwanSprict;
 
     /// <summary>リスポーンしたら動かしたくないので作った判定</summary>
-    bool _isStop = false;
-
-    PhotonView m_view;
-    Rigidbody m_rb;
+    private bool isStop = false;
 
     void Start()
     {
-        m_view = GetComponent<PhotonView>();
-        if (m_view)
-        {
-            if (m_view.IsMine)
-            {
-                // 同期元（自分で操作して動かす）オブジェクトの場合のみ Rigidbody を使う
-                m_rb = GetComponent<Rigidbody>();
-            }
-        }
         _agent = GetComponent<NavMeshAgent>();
         // 初期位置を保存する（※）
         _cachedTargetPosition = _maker.position; 
@@ -59,12 +45,11 @@ public class PlayerMoveController : MonoBehaviour
 
     void Update()
     {
-        if (m_view && !m_view.IsMine) return;  // 同期先のオブジェクトだった場合は何もしない
 
         // _target が移動したら Navmesh Agent を使って移動させる
         if (Vector3.Distance(_cachedTargetPosition, _maker.position) > Mathf.Epsilon) // _target が移動したら
         {
-            if (_isStop == false)
+            if (isStop == false)
             {
                 _cachedTargetPosition = _maker.position; // 移動先の座標を保存する
                 _agent.SetDestination(_cachedTargetPosition);  // Navmesh Agent に目的地をセットする
@@ -72,17 +57,17 @@ public class PlayerMoveController : MonoBehaviour
 
         }
         //リスポーンに戻る処理が行われた場合
-        if (_respwanSprict._isReSpawn == true)
+        if (_respwanSprict.isReSpawn == true)
         {
             //Playerをリスポ地点に移動
             this.transform.position = _reSpawnArea.position;
             //動きを止める
-            _isStop = true;
+            isStop = true;
             _maker.position = _reSpawnArea.position; // 移動先の座標を保存する
             _cachedTargetPosition = _maker.position; // 移動先の座標をリスポ地点にセットする
             _agent.SetDestination(_cachedTargetPosition);  // Navmesh Agent に目的地をセットする
-            _isStop = false;
-            _respwanSprict._isReSpawn = false;
+            isStop = false;
+            _respwanSprict.isReSpawn = false;
         }
         // m_animator がアサインされていたら Animator Controller にパラメーターを設定する
         if (_anim)

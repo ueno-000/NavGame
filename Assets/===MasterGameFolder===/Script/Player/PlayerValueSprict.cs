@@ -5,39 +5,37 @@ using UnityEngine;
 
 public class PlayerValueSprict : MonoBehaviour,IReceiveDamage,IMPValue
 {
-    /// <summary>
-    /// デバッグモードTrueにすると攻撃を受けない
-    /// </summary>
-    [Header("【デバッグ用】：✔をつけると攻撃を受けない"), SerializeField] bool _debugMode = false;
+    /// <summary>デバッグモードTrueにすると攻撃を受けない </summary>
+    [Header("【デバッグ用】：✔をつけると攻撃を受けない"), SerializeField] private bool _debugMode = false;
 
     /// <summary>キャラクターなどのアニメーションするオブジェクトを指定する</summary>
-    [SerializeField] Animator _anim = default;
+    [SerializeField] private Animator _anim = default;
 
     [Header("HP")]
     /// <summary>HitPoint</summary>
-    [SerializeField] int _hp = 20;
-     int _maxHp;
-    [SerializeField] GameObject HPController;
-    [SerializeField] HPController helth;
-    [SerializeField] HPController helth2;
+    [SerializeField] private int _hp = 20;
+    private int _maxHp;
+    [SerializeField] private GameObject HPController;
+    [SerializeField] private HPController helth;
+    [SerializeField] private HPController helth2;
     [Header("MP")]
     /// <summary>MagicPoint</summary>
-    [SerializeField] int _mp = 20; 
-    int _maxMp;
-    [SerializeField] HPController mp;
-    [SerializeField] GameObject MPController;
+    [SerializeField] private int _mp = 20;
+    private int _maxMp;
+    [SerializeField] private HPController mp;
+    [SerializeField] private GameObject MPController;
 
 
-    [Header("リスポーン"),SerializeField] GameObject _reSpawnButton;
-    SkillReSpawn _reSpawn;
+    [Tooltip("リスポーン"),SerializeField] private GameObject _reSpawnButton;
+    private SkillReSpawn _reSpawn;
 
-    [Header("ポストプロセッシング"),SerializeField] GameObject postproseccing;
-    [Header("プレイヤー"), SerializeField] GameObject _player;
-    [Header("Canvas→ButtonProcess→DontTouchをアタッチ"), SerializeField] GameObject _dontTouchSkill;
+    [Tooltip("ポストプロセッシング"),SerializeField] private GameObject postproseccing;
+    [Tooltip("プレイヤー"), SerializeField] private GameObject _player;
+    [Header("Canvas→ButtonProcess→DontTouchをアタッチ"), SerializeField] private GameObject _dontTouchSkill;
     /// <summary>攻撃を受けたかの判定</summary>
-    bool _isKnock = false;
-    /// <summary>死んだかの判定</summary>
-    bool _isDeath = false;
+    private bool _isKnock = false;
+    /// <summary>生死判定</summary>
+    private bool _isDeath = false;
     private float _timeleft;
 
     public int Hp
@@ -140,12 +138,12 @@ public class PlayerValueSprict : MonoBehaviour,IReceiveDamage,IMPValue
         }
     }
 
-    IEnumerator DamageTime()
+    private IEnumerator DamageTime()
     {
         yield return new WaitForSeconds(0.5f);
         _isKnock = false;
     }
-    IEnumerator DeathReSpawn()
+    private IEnumerator DeathReSpawn()
     {
         yield return new WaitForSeconds(3f);
         _reSpawn.OnReSpawn();

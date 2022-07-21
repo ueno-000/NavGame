@@ -1,41 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-
+/// <summary>
+/// Playerの各種値の管理するscript
+/// </summary>
 public class PlayerValueController : MonoBehaviour,IGetValue
 {
     [Header("【TextはCanvas→PlayerValueから格納する】")]
-    [SerializeField] bool _isCheck;
-    /// <summary>
-    /// プレイヤーレベル
-    /// </summary>
-    [Header("プレイヤーレベル"),SerializeField] int _playerLevel = 1;
+    [SerializeField] private bool _isCheck;
+    /// <summary> プレイヤーレベル</summary>
+    [Tooltip("プレイヤーレベル"),SerializeField] private int _playerLevel = 1;
     [SerializeField] Text _levelText;
-    /// <summary> 
-    /// 所持金
-    /// </summary>
-    [Header("所持コイン"), SerializeField] int _playerCoin = 500;
-    [SerializeField] Text _coinText;
-    /// <summary>
-    /// 経験値 
-    /// </summary>
-    [Header("経験値"),SerializeField] int _playerExp = 0;
-    [SerializeField] Text _expText;
+    /// <summary> 所持金</summary>
+    [Tooltip("所持コイン"), SerializeField] private int _playerCoin = 500;
+    [SerializeField] private Text _coinText;
+    /// <summary> 経験値 </summary>
+    [Tooltip("経験値"),SerializeField] private int _playerExp = 0;
+    [SerializeField] private Text _expText;
     /// <summary>EXPテーブル </summary>
-    [SerializeField] int[] _expTable = new int[10];
+    [SerializeField] private int[] _expTable = new int[10];
     /// <summary> 次のレベルに持ち越す残った経験値 </summary>
-    [SerializeField] int _remainExp;
+    [SerializeField] private int _remainExp;
     /// <summary>時間</summary>
-    float _time;
+    private float _time;
 
     /// <summary>
     /// 以下毎秒増える処理
     /// </summary>
     [Header("毎秒の加算処理")]
-    [SerializeField] int _everyCoin = 10;
-    [SerializeField] int _everyExp= 1;
+    [SerializeField] private int _everyCoin = 10;
+    [SerializeField] private int _everyExp= 1;
 
     private void Start()
     {
