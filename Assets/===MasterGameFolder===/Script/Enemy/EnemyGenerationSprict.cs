@@ -1,23 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+/// <summary>
+/// Enemy生成のスクリプト
+/// </summary>
 public class EnemyGenerationSprict : MonoBehaviour
 {
     [Header("EnemyPrefabをセットする")]
-    [SerializeField] GameObject _enemyPrefab;
+    [SerializeField] private GameObject _enemyPrefab;
 
-    [Header("生成数")]
-    [SerializeField] int _enemyNum;
+    [Tooltip("生成数")]
+    [SerializeField] private int _enemyNum;
 
-    //生成ポジションの指定
-    [Header("生成ポジションの配列")]
-    [SerializeField] Transform[]  _position;
+   /// <summary>
+   /// 生成場所の指定
+   /// </summary>
+    [Tooltip("生成ポジションの配列")]
+    [SerializeField] private Transform[]  _position;
 
-    [Header("SetTImeも同じ値を追加")]
-    //生成間隔の時間指定
-    [SerializeField] float _time = 5f;
-    [SerializeField] float _setTime = 5f;
+    /// <summary>
+    /// 生成間隔の時間指定
+    /// </summary>
+    [Tooltip("SetTImeも同じ値を追加")]
+    [SerializeField] private float _time = 5f;
+    [SerializeField] private float _setTime = 5f;
 
     /// <summary>
     /// ヒエラルキー上にいる敵の数

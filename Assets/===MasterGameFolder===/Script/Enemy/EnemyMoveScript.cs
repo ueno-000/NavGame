@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+/// <summary>
+/// Enemyの行動を制御するscript
+/// </summary>
 public class EnemyMoveScript : MonoBehaviour
 {
     // 巡回地点オブジェクトを格納する配列
@@ -20,29 +22,28 @@ public class EnemyMoveScript : MonoBehaviour
     /// <summary>
     ///  SphereColliderで当たり判定をとる
     /// </summary>
-    SphereCollider _attackCol = default;
+    private SphereCollider _attackCol = default;
 
     //SphereColliderの大きさ
     [Header("コライダーの範囲")]
-    [SerializeField,Range(1.0f, 10.0f)] float _attackRange;
+    [SerializeField,Range(1.0f, 10.0f)] private float _attackRange;
 
-    //animation
-    Animator _anim = default;
+    private Animator _anim = default;
 
     //Player
-    GameObject _player;
+    private GameObject _player;
 
     //インスペクター上から行動設定できるようにする
-    [SerializeField] Action action = Action.Patrol;
+    [SerializeField] private Action action = Action.Patrol;
 
     [Tooltip("Caractorを追う時間")]
-    [SerializeField] float _time;
+    [SerializeField] private float _time;
     [Tooltip("Caractorを攻撃する時間")]
-    [SerializeField] float _timeAttack;
+    [SerializeField] private float _timeAttack;
 
-   
 
-    enum Action
+
+    private enum Action
     {
         Patrol,//決められた地点を巡回する
         Chase,//対象のキャラクターを追いかける
@@ -96,10 +97,11 @@ public class EnemyMoveScript : MonoBehaviour
             _anim.SetFloat("Speed", _agent.velocity.magnitude);
         }
 
+        EnemyAction();
+    }
 
-
-        //＝＝＝＝以下列挙型の処理＝＝＝＝
-
+    private void EnemyAction()
+    {
 
 
         //＝＝＝＝actionがpatrolの場合
@@ -136,6 +138,7 @@ public class EnemyMoveScript : MonoBehaviour
             LichEnemyAttack();
         }
     }
+
     private void OnTriggerEnter(Collider col)
     {
         //Patrolの時にPlayerタグのオブジェクトに当たったらChaseに
@@ -164,7 +167,10 @@ public class EnemyMoveScript : MonoBehaviour
         }
     }
 
-    void LichEnemyAttack()
+    /// <summary>
+    /// 攻撃を与える処理
+    /// </summary>
+    private void LichEnemyAttack()
     {
         var hit = _player.GetComponent<IReceiveDamage>();
         _anim.SetTrigger("Attack");

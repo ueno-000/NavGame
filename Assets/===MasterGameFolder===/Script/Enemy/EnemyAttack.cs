@@ -3,19 +3,18 @@
 /// <summary>
 /// 敵キャラクターを制御するコンポーネント。
 /// トリガーに Rigidbody が入ったら、攻撃する。
-/// 攻撃が Rigidbody に当たったら、弾き飛ばす。
 /// 攻撃範囲は _attackRangeCenter, _attackRangeRadius で設定する。
 /// </summary>
 public class EnemyAttack : MonoBehaviour
 {
     /// <summary>攻撃範囲の中心</summary>
-    [SerializeField] Vector3 _attackRangeCenter = default;
+    [SerializeField] private Vector3 _attackRangeCenter = default;
     /// <summary>攻撃範囲の半径</summary>
-    [SerializeField] float _attackRangeRadius = 1f;
+    [SerializeField] private float _attackRangeRadius = 1f;
     /// <summary></summary>
-    [SerializeField] float _attackPower = 10f;
-    GameObject _player = default;
-    Animator _anim = default;
+    [SerializeField] private float _attackPower = 10f;
+    private GameObject _player = default;
+    private Animator _anim = default;
 
     void Start()
     {
