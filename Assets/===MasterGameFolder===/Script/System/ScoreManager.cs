@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+
 /// <summary>
-/// スコア表示のscript
-/// 
+/// スコア表示のscript 
 /// </summary>
+
 public class ScoreManager : MonoBehaviour
 {
     [Tooltip("敵を倒した数"), SerializeField] private int _killCount;

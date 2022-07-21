@@ -11,32 +11,32 @@ using UnityEngine.UI;
 public class TutorialManager : MonoBehaviour
 {
     // チュートリアル用UI
-    protected RectTransform tutorialTextArea;
-    protected Text TutorialTitle;
-    protected Text TutorialText;
+    protected RectTransform _tutorialTextArea;
+    protected Text _tutorialTitle;
+    protected Text _tutorialText;
 
     // チュートリアルタスク
-    protected TutorialInterface currentTask;
-    protected List<TutorialInterface> tutorialTask;
+    protected TutorialInterface _currentTask;
+    protected List<TutorialInterface> _tutorialTask;
 
     // チュートリアル表示フラグ
     private bool isEnabled;
 
     // チュートリアルタスクの条件を満たした際の遷移用フラグ
-    private bool task_executed = false;
+    private bool _taskExecuted = false;
 
     // チュートリアル表示時のUI移動距離
-    private float fade_pos_x = 250;
+    private float _fadePosX = 250;
 
     void Start()
     {
         // チュートリアル表示用UIのインスタンス取得
-        tutorialTextArea = GameObject.Find("TutorialTextArea").GetComponent<RectTransform>();
-        TutorialTitle = tutorialTextArea.Find("Title").GetComponent<Text>();
-        TutorialText = tutorialTextArea.Find("Text").GetComponentInChildren<Text>();
+        _tutorialTextArea = GameObject.Find("TutorialTextArea").GetComponent<RectTransform>();
+        _tutorialTitle = _tutorialTextArea.Find("Title").GetComponent<Text>();
+        _tutorialText = _tutorialTextArea.Find("Text").GetComponentInChildren<Text>();
 
         // チュートリアルの一覧
-        tutorialTask = new List<TutorialInterface>()
+        _tutorialTask = new List<TutorialInterface>()
         {
             new FirstTask(),
             new MouseWheelTask(),
@@ -49,7 +49,7 @@ public class TutorialManager : MonoBehaviour
         };
 
         // 最初のチュートリアルを設定
-        StartCoroutine(SetCurrentTask(tutorialTask.First()));
+        StartCoroutine(SetCurrentTask(_tutorialTask.First()));
 
         isEnabled = true;
     }
@@ -57,22 +57,22 @@ public class TutorialManager : MonoBehaviour
     void Update()
     {
         // チュートリアルが存在し実行されていない場合に処理
-        if (currentTask != null && !task_executed)
+        if (_currentTask != null && !_taskExecuted)
         {
             // 現在のチュートリアルが実行されたか判定
-            if (currentTask._isCheckTask())
+            if (_currentTask._isCheckTask())
             {
-                task_executed = true;
+                _taskExecuted = true;
 
-                DOVirtual.DelayedCall(currentTask._transitionTime(), () => {
-                    iTween.MoveTo(tutorialTextArea.gameObject, iTween.Hash(
-                        "position", tutorialTextArea.transform.position + new Vector3(fade_pos_x, 0, 0),
+                DOVirtual.DelayedCall(_currentTask._transitionTime(), () => {
+                    iTween.MoveTo(_tutorialTextArea.gameObject, iTween.Hash(
+                        "position", _tutorialTextArea.transform.position + new Vector3(_fadePosX, 0, 0),
                         "time", 1f
                     ));
 
-                    tutorialTask.RemoveAt(0);
+                    _tutorialTask.RemoveAt(0);
 
-                    var nextTask = tutorialTask.FirstOrDefault();
+                    var nextTask = _tutorialTask.FirstOrDefault();
                     if (nextTask != null)
                     {
                         StartCoroutine(SetCurrentTask(nextTask, 1f));
@@ -98,18 +98,18 @@ public class TutorialManager : MonoBehaviour
         // timeが指定されている場合は待機
         yield return new WaitForSeconds(time);
 
-        currentTask = task;
-        task_executed = false;
+        _currentTask = task;
+        _taskExecuted = false;
 
         // UIにタイトルと説明文を設定
-        TutorialTitle.text = task._getTitle();
-        TutorialText.text = task._getText();
+        _tutorialTitle.text = task._getTitle();
+        _tutorialText.text = task._getText();
 
         // チュートリアルタスク設定時用の関数を実行
         task.OnTaskSetting();
 
-        iTween.MoveTo(tutorialTextArea.gameObject, iTween.Hash(
-            "position", tutorialTextArea.transform.position - new Vector3(fade_pos_x, 0, 0),
+        iTween.MoveTo(_tutorialTextArea.gameObject, iTween.Hash(
+            "position", _tutorialTextArea.transform.position - new Vector3(_fadePosX, 0, 0),
             "time", 1f
         ));
     }
@@ -123,6 +123,6 @@ public class TutorialManager : MonoBehaviour
 
         // UIの表示切り替え
         float alpha = isEnabled ? 1f : 0;
-        tutorialTextArea.GetComponent<CanvasGroup>().alpha = alpha;
+        _tutorialTextArea.GetComponent<CanvasGroup>().alpha = alpha;
     }
 }

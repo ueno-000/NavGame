@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 
+/// <summary>
+/// Sceneの切替Fade処理
+/// </summary>
 public class Scenemanager : MonoBehaviour
 {
-    [Header("Fadeイメージを貼り付ける"),SerializeField] Image _fadeImage;
+    [Header("Fadeイメージを貼り付ける"),SerializeField] private Image _fadeImage;
    // [Header("移行させるシーン名"), SerializeField] string _sceneName;
 
     public void FadeOut(string scene)

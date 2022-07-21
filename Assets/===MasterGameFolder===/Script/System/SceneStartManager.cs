@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Sceneが切り替わった時のフェイドアウト処理
+/// </summary>
 public class SceneStartManager : MonoBehaviour
 {
     [SerializeField] Scenemanager _sceneManager;
