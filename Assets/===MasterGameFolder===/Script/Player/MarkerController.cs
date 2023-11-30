@@ -11,7 +11,7 @@ public class MarkerController : MonoBehaviour
     /// <summary>Ray が何かに当たった時に Scene に表示する Ray の色</summary>
     [SerializeField] private Color _debugRayColorOnHit = Color.red;
     /// <summary>ここに GameObject を設定すると、飛ばした Ray が何かに当たった時にそこに m_marker オブジェクトを移動する</summary>
-    [SerializeField] public GameObject _marker;
+    [SerializeField] private GameObject _marker;
     /// <summary>飛ばした Ray が当たった座標に m_marker を移動する際、Ray が当たった座標からどれくらいずらした場所に移動するかを設定する</summary>
     [SerializeField] private Vector3 _markerOffset = Vector3.up * 0.01f;
 
