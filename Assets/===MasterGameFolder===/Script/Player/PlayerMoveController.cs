@@ -8,9 +8,10 @@ using UnityEngine.AI;   // Navmesh Agent を使うために必要
 public class PlayerMoveController : MonoBehaviour
 {
     /// <summary>拠点のTransform</summary>
-    [Header("ReSpawn位置：ReSpawnPrefab→Area→［Spawn］をアタッチ"), SerializeField] private Transform _reSpawnArea;
+    [Tooltip("ReSpawn位置：ReSpawnPrefab→Area→［Spawn］をアタッチ"), SerializeField] private Transform _reSpawnArea;
     /// <summary>移動先となる位置情報</summary>
-    [Space(5),SerializeField] private Transform _maker = default;
+    [Space(5),]
+    [SerializeField] private Transform _maker = default;
     /// <summary>移動先座標を保存する変数</summary>
     private Vector3 _cachedTargetPosition;
 
